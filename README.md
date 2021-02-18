@@ -1,39 +1,55 @@
-# ipadic-py
+# mecab-ko-dic
 
-This is a version of IPAdic packaged for use in Python with
-[mecab-python3](https://github.com/SamuraiT/mecab-python3) or
+This is a Korean dictionary for the MeCab tokenizer, packaged for use in Python
+with [mecab-python3](https://github.com/SamuraiT/mecab-python3) or
 [fugashi](https://github.com/polm/fugashi). 
 
-# You Shouldn't Use This
 
-This is the version of IPAdic included with MeCab. It hasn't been updated since
-at least 2007. The organization that created it no longer does this kind of
-work. The contact URLs listed in the source no longer resolve. It doesn't
-contain important recent terms like 令和, the current era name.
+## Should you use this?
 
-Instead you should use [Unidic](https://unidic.ninjal.ac.jp/), which is
-maintained by NINJAL. 
+We (at Luminoso) think this is probably a better way to find tokens in Korean
+words than just splitting the text on spaces would be. We also know that MeCab
+wasn't designed for Korean. But it gives us the kind of tokens we need better
+than other things we've tried.
 
-This package is provided for compatability with old benchmarks or models.
+One reason we're packaging this is to use it in [wordfreq][], which needs to
+have a reasonable set of consistent tokens so it can look up their frequencies,
+and already uses MeCab for Japanese.
+
+[wordfreq]: https://github.com/LuminosoInsight/wordfreq
+
+If interoperability with things that already use MeCab is not your goal, you
+probably have better options for Korean NLP than this.
+
+
+## Credits
+
+The dictionary data was created by Yongwoon Lee and Yungho Yu. We've included it
+as part of this package under the terms of the Apache License 2.0. The original
+dictionary can be found [here][original-dict].
+
+The idea to package a MeCab dictionary as a Python repository, as well as the
+code structure for doing so, come from [Paul McCann's ipadic package][ipadic-py].
+
+[original-dict]: https://bitbucket.org/eunjeon/mecab-ko-dic/
+[ipadic-py]: https://github.com/polm/ipadic-py
+
 
 ## Usage
 
 To install:
 
-    pip install ipadic
+    pip install mecab-ko-dic
 
 To initialize with mecab-python3:
 
     import MeCab
-    import ipadic
-    tagger = MeCab.Tagger(ipadic.MECAB_ARGS)
-    print(tagger.parse("図書館にいた事がバレた"))
+    import mecab_ko_dic
+    tagger = MeCab.Tagger(mecab_ko_dic.MECAB_ARGS)
+    print(tagger.parse("안녕하세요세계."))
 
-# License
 
-IPAdic is copyright the Nara Institute of Science and Technology and ICOT. For
-details see the COPYING file included in this distribution. This version of the
-dictionary is distributed in compliance with the terms specified in that file.
+## License
 
-The code in this repository is by Paul McCann and is available under the MIT or
-WTFPL license, as you prefer.
+The data we use, and this code repository itself, are released under the Apache
+License 2.0. See the LICENSE.txt file included in this distribution.
