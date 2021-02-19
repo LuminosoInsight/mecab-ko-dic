@@ -21,5 +21,5 @@ setup(name='mecab-ko-dic',
         "Operating System :: OS Independent",
         "Natural Language :: Korean",
       ],
-      package_data={'mecab-ko-dic': ['dicdir/*']}
+      package_data={'mecab_ko_dic': ['dicdir/*']}
       )
